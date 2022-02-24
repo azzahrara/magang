@@ -19,7 +19,7 @@
         <div class="row w-100 mx-0">
           <div class="col-lg-12 mx-auto">
             <ul class="nav nav-tabs">
-              <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#daftar"><b>INI TEZT </b></a></li>
+              <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#daftar"><b>Daftar</b></a></li>
               <li class="nav-item"><a class="nav-link " data-bs-toggle="tab" href="#arsip"><b>Arsip Tugas Akhir</b></a> </li>
             </ul>
             <div class="tab-content auth-form-light">
