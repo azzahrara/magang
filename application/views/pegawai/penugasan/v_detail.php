@@ -46,52 +46,55 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <a href="<?= base_url(); ?>pegawai/penugasan" class="btn btn-light float-right">Kembali</a>
+                            <h4 class="font-weight-bold mt-3">Isi Penugasan</h4>
+                            <p><?= $detail->isi_tugas ?></p>
                         </div>
+                        <a href="<?= base_url(); ?>pegawai/penugasan" class="btn btn-light float-right">Kembali</a>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <h3 class="font-weight-bold mb-10">Detail Peserta</h3> <a onclick="showttgspm()" class="btn btn-sm btn-info float-right mb-3">Lihat</a>
-                            <div class="mt-3" name="ttgspm" id="ttgspm" style="display: none;">
-                                <div class="table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <h3 class="font-weight-bold mb-10">Detail Peserta</h3> <a onclick="showttgspm()" class="btn btn-sm btn-info float-right mb-3">Lihat</a>
+                        <div class="mt-3" name="ttgspm" id="ttgspm" style="display: none;">
+                            <div class="table-responsive">
+                                <table class="table table-sm table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Nama Peserta</th>
+                                            <th>Hasil Tugas</th>
+                                            <th>Dokumen Hasil</th>
+                                            <th>Status</th>
+                                            <th>Detail</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($detailtgs as $dt) {
+                                        ?>
                                             <tr>
-                                                <th>No.</th>
-                                                <th>Nama Peserta</th>
-                                                <th>Hasil Tugas</th>
-                                                <th>Dokumen Hasil</th>
-                                                <th>Detail</th>
+                                                <td><?= $no++ ?></td>
+                                                <td><?= $dt->nama_pm ?></td>
+                                                <td><?= $dt->hasil_tugas ?></td>
+                                                <td><?= $dt->dok_hasil_tugas; ?></td>
+                                                <td><?php
+                                                    if ($dt->status == 'Berlangsung') { ?>
+                                                        <a class="badge badge-warning">Berjalan</a>
+                                                    <?php } else { ?>
+                                                        <a class="badge badge-success">Diterima</a>
+                                                    <?php } ?>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-sm btn-info" href=" <?= base_url('pegawai/penugasan/detail_peserta/' . $dt->id_det_tugas) ?>"><i class="ti ti-eye"></i></a>
+                                                    <!-- <a class="btn btn-sm btn-success"><i class="ti ti-pencil"></i></a> -->
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $no = 1;
-                                            foreach ($detailtgs as $dt) {
-                                            ?>
-                                                <tr>
-                                                    <td><?= $no++ ?></td>
-                                                    <td><?= $dt->nama_pm ?></td>
-                                                    <td><?= $dt->hasil_tugas ?></td>
-                                                    <td><?= $dt->dok_hasil_tugas; ?></td>
-                                                    <td><?php
-                                                        if ($dt->status == 'Berlangsung') { ?>
-                                                            <a class="badge badge-warning">Berjalan</a>
-                                                        <?php } else { ?>
-                                                            <a class="badge badge-success">Dikumpul</a>
-                                                        <?php } ?>
-                                                    </td>
-                                                    <td>
-                                                        <a class="btn btn-sm btn-info" href=" <?= base_url('pegawai/penugasan/detail_peserta/' . $dt->id_det_tugas) ?>"><i class="ti ti-eye"></i></a>
-                                                        <!-- <a class="btn btn-sm btn-success"><i class="ti ti-pencil"></i></a> -->
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -99,5 +102,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </div>

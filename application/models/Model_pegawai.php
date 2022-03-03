@@ -161,6 +161,27 @@ class Model_pegawai extends CI_model
         $query = $this->db->get();
         return $query->result();
     }
+    public function alljoin2arrinner($table, $table2, $ktabel21)
+    {
+
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->join($table2, $ktabel21, 'inner');
+        // $this->db->where($ket, $param);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_peg_pdf()
+    {
+
+        $this->db->select('nip, nama_pegawai');
+        $this->db->from('peserta_magang');
+        $this->db->join('data_pegawai', 'data_pegawai.nip = peserta_magang.pembimbing_balai', 'inner');
+        $this->db->group_by('nip');
+        // $this->db->where($ket, $param);
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     public function join3arr($table, $table2, $table3, $ktabel21, $ktable31, $ket, $param)
     {
@@ -170,6 +191,40 @@ class Model_pegawai extends CI_model
         $this->db->join($table2, $ktabel21, 'left');
         $this->db->join($table3, $ktable31, 'left');
         $this->db->where($ket, $param);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function tgl($tglawal, $tglakhir)
+    {
+        $this->db->select('*');
+        $this->db->from('peserta_magang');
+        $this->db->where("tgl_mli_pm BETWEEN '$tglawal' AND '$tglakhir'");
+        $this->db->join('data_pegawai', 'data_pegawai.nip = peserta_magang.pembimbing_balai');
+        $this->db->order_by('tgl_mli_pm', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function mhs_nip($ket)
+    {
+        $this->db->select('*');
+        $this->db->from('peserta_magang');
+        $this->db->join('data_pegawai', 'data_pegawai.nip = peserta_magang.pembimbing_balai');
+        $this->db->where($ket);
+        $this->db->order_by('tgl_mli_pm', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function tgl_mhs_nip($tglawal, $tglakhir, $ket)
+    {
+        $this->db->select('*');
+        $this->db->from('peserta_magang');
+        $this->db->join('data_pegawai', 'data_pegawai.nip = peserta_magang.pembimbing_balai');
+        $this->db->where("tgl_mli_pm BETWEEN '$tglawal' AND '$tglakhir'");
+        $this->db->order_by('tgl_mli_pm', 'ASC');
+        $this->db->where($ket);
         $query = $this->db->get();
         return $query->result();
     }

@@ -5,37 +5,61 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <h3 class="font-weight-bold mb-10">Laporan Mingguan</h3>
+                            <h3 class="font-weight-bold mb-10"><?= $sub; ?></h3>
                             <div class="mt-3">
                                 <div class="mt-3">
                                     <div class="table-responsive">
-                                        <table class="table table-hover">
+                                        <table class="table table-hover" id="peg_laporan">
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
                                                     <th>Tanggal</th>
-                                                    <th>ID Tugas</th>
                                                     <th>Peserta</th>
-                                                    <th>Dokumen</th>
-                                                    <th>Aksi</th>
+                                                    <th class="no-sort">Isi Laporan</th>
+                                                    <!-- <th>Dokumen</th> -->
+                                                    <th class="no-sort">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $no = 1;
-                                                foreach ($detail as $d) {
-                                                ?>
-                                                    <tr>
-                                                        <td><?= $no++ ?></td>
-                                                        <td><?= $d->nama_pm ?></td>
-                                                        <td><?= $d->id_lap_ming ?></td>
-                                                        <td><?= $d->tgl_lap_ming ?></td>
-                                                        <td><?= $d->dok_lap_ming; ?></td>
-                                                        <td>
-                                                            <a class="btn btn-sm btn-info" href="<?= base_url('pegawai/laporan/detail/' . $d->id_lap_ming) ?>"><i class="ti ti-eye"></i></a>
-                                                            <!-- <a class="btn btn-sm btn-success"><i class="ti ti-pencil"></i></a> -->
-                                                        </td>
-                                                    </tr>
+                                                if ($sub == 'Laporan Mingguan Peserta Bimbingan') { ?>
+                                                    <?php
+                                                    $no = 1;
+                                                    foreach ($detail as $d) {
+                                                    ?>
+                                                        <tr>
+                                                            <td><?= $no++ ?></td>
+                                                            <td><?= $d->tgl_lap_ming ?></td>
+                                                            <td><?= $d->nama_pm ?></td>
+                                                            <td><?= character_limiter($d->isi_lap_ming, 20) ?></td>
+                                                            <!-- <td><?= character_limiter($d->dok_lap_ming, 12); ?></td> -->
+                                                            <td>
+                                                                <a class="btn btn-sm btn-info" href="<?= base_url('pegawai/laporan/detail/' . $d->id_lap_ming) ?>"><i class="ti ti-eye"></i></a>
+                                                                <!-- <a class="btn btn-sm btn-success"><i class="ti ti-pencil"></i></a> -->
+                                                            </td>
+                                                        </tr>
+                                                    <?php } ?>
+                                                <?php } else { ?>
+                                                    <?php
+                                                    $no = 1;
+                                                    foreach ($details as $d) {
+                                                    ?>
+                                                        <tr>
+                                                            <td><?= $no++ ?></td>
+                                                            <td><?= $d->tgl_lap_ming ?></td>
+                                                            <td><?= $d->nama_pm ?></td>
+                                                            <td><?= character_limiter($d->isi_lap_ming, 20) ?></td>
+                                                            <!-- <td><?= character_limiter($d->dok_lap_ming, 12); ?></td> -->
+                                                            <td> <?php
+                                                                    if ($d->pembimbing_balai != $nip) { ?>
+                                                                    <a class="btn btn-sm btn-primary" href="<?= base_url('pegawai/laporan/det_lap/' . $d->id_lap_ming) ?>"><i class="ti ti-eye"></i></a>
+                                                                    <!-- <a class="btn btn-sm btn-success"><i class="ti ti-pencil"></i></a> -->
+                                                                <?php } else { ?>
+                                                                    <a class="btn btn-sm btn-info" href="<?= base_url('pegawai/laporan/detail/' . $d->id_lap_ming) ?>"><i class="ti ti-eye"></i></a>
+                                                                <?php } ?>
+                                                            </td>
+                                                        </tr>
+                                                    <?php } ?>
                                                 <?php } ?>
                                             </tbody>
                                         </table>

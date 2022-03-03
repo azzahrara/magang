@@ -15,17 +15,17 @@
                             <?= $this->session->flashdata('message'); ?>
                             <div class="mt-3">
                                 <div class="table-responsive">
-                                    <table class="table table-hover">
+                                    <table class="table table-hover wrap" id="peg_penugasan">
                                         <thead>
                                             <tr>
-                                                <th>No.</th>
-                                                <th>ID Penugasan</th>
-                                                <th>Tanggal Pengumpulan</th>
-                                                <!-- <th>Isi Tugas</th> -->
+                                                <th class="col-md-1">No.</th>
+                                                <th class="col-md-1">ID Penugasan</th>
+                                                <th class="col-md-7 no-sort">Isi Tugas</th>
+                                                <th class="col-md-1">Tanggal Pengumpulan</th>
                                                 <!-- <th>Dokumen</th> -->
-                                                <th>Jumlah Peserta</th>
-                                                <th>Status</th>
-                                                <th>Aksi</th>
+                                                <!-- <th class="col-1">Jumlah Peserta</th> -->
+                                                <th class="col-md-1">Status</th>
+                                                <th class="col-md-1 no-sort">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -36,10 +36,10 @@
                                                 <tr>
                                                     <td><?= $no++ ?></td>
                                                     <td><?= $dt->id_tugas ?></td>
+                                                    <td><?= word_limiter($dt->isi_tugas, 6); ?></td>
                                                     <td><?= $dt->tgl_pengumpulan ?></td>
-                                                    <!-- <td><?= $dt->isi_tugas; ?></td> -->
                                                     <!-- <td><?= $dt->dok_tugas; ?></td> -->
-                                                    <td><?= $dt->jumlah_pm; ?></td>
+                                                    <!-- <td><?= $dt->jumlah_pm; ?></td> -->
                                                     <td> <?php
                                                             if ($dt->tgl_pengumpulan < date('Y-m-d')) { ?>
                                                             <a class="badge badge-danger">Selesai</a>

@@ -9,7 +9,10 @@
                         </div>
                         <?= $this->session->flashdata('message'); ?>
                         <div class="mt-3 px-4 pt-10">
-                            <button onclick="addrev()" class="btn btn-sm btn-primary float-right mb-3"><i class="ti ti-plus"></i> Review</button>
+                            <?php
+                            if ($jns == "1") { ?>
+                                <button onclick="addrev()" class="btn btn-sm btn-primary float-right mb-3"><i class="ti ti-plus"></i> Review</button>
+                            <?php } ?>
                             <div class="table-responsive">
                                 <table class="table col-lg" style="width: 100%">
                                     <colgroup>
@@ -29,10 +32,10 @@
                                             <th>Nama Peserta</th>
                                             <td><?= $detail->nama_pm ?></td>
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <th>Isi Laporan</th>
                                             <td><?= $detail->isi_lap_ming ?></td>
-                                        </tr>
+                                        </tr> -->
                                         <tr>
                                             <th>Dok Lap</th>
                                             <td><?php
@@ -46,6 +49,8 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <h4 class="font-weight-bold mt-3">Detail Laporan Mingguan</h4>
+                            <p><?= $detail->isi_lap_ming ?></p>
                         </div>
                         <a href="<?= base_url(); ?>pegawai/laporan" class="btn btn-light float-right">Kembali</a>
                     </div>

@@ -33,10 +33,10 @@
                                             <th>Tanggal Pengumpulan</th>
                                             <td><?= $detail->tgl_pengumpulan ?></td>
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <th>Isi Tugas</th>
                                             <td><?= $detail->isi_tugas ?></td>
-                                        </tr>
+                                        </tr> -->
                                         <tr>
                                             <th>Dokumen</th>
                                             <td><?php
@@ -50,6 +50,8 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <h4 class="font-weight-bold mt-3">Isi Penugasan</h4>
+                            <p><?= $detail->isi_tugas ?></p>
                         </div>
                     </div>
                 </div>
@@ -68,7 +70,6 @@
                                     <?php } else { ?>
                                         <a href=" <?= base_url('peserta/penugasan/tambah/' . $detail->id_det_tugas) ?>" class="btn btn-sm btn-info float-right mb-3"><i class="ti ti-pencil"></i> Edit</a>
                                     <?php } ?>
-
                                 <?php } ?>
                             </div>
                             <div class="table-responsive mb-4">
@@ -86,10 +87,10 @@
                                             <th>Nama Peserta</th>
                                             <td><?= $user2['nama_pm'] ?></td>
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <th>Hasil Tugas</th>
                                             <td><?= $detail->hasil_tugas ?></td>
-                                        </tr>
+                                        </tr> -->
                                         <tr>
                                             <th>Dokumen</th>
                                             <td><?php
@@ -103,6 +104,8 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <h4 class="font-weight-bold mt-3">Hasil Tugas</h4>
+                            <p><?= $detail->hasil_tugas ?></p>
                         </div>
                         <a href="<?= base_url(); ?>peserta/penugasan" class="btn btn-light float-right">Kembali</a>
                     </div>

@@ -21,10 +21,10 @@
                                             <th>Tanggal</th>
                                             <td><?= $detail->tgl_lap_ming ?></td>
                                         </tr>
-                                        <tr>
+                                        <!--<tr>
                                             <th>Isi Laporan</th>
                                             <td><?= $detail->isi_lap_ming ?></td>
-                                        </tr>
+                                        </tr>-->
                                         <tr>
                                             <th>Dokumen</th>
                                             <td>
@@ -49,6 +49,8 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <h4 class="font-weight-bold mt-3">Isi Laporan Mingguan</h4>
+                            <p><?= $detail->isi_lap_ming ?></p>
                         </div>
                         <a href="<?= base_url(); ?>peserta/laporan" class="btn btn-light float-right">Kembali</a>
                     </div>

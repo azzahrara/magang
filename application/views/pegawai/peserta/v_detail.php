@@ -28,13 +28,7 @@
                                         <p><?= $detail->nama_pm; ?></p>
                                     </address>
                                 </div>
-                                <div class="col-md-6">
-                                    <address>
-                                        <p class="font-weight-bold">Jenis Kelamin</p>
-                                        <p><?= $detail->jk_pm; ?></p>
-                                    </address>
-                                </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <address>
                                         <p class="font-weight-bold">Nomor Whatsapp</p>
                                         <p><?= $detail->no_wa_pm; ?></p>
@@ -101,13 +95,21 @@
                                 <div class="col-md-6">
                                     <address>
                                         <p class="font-weight-bold">Surat Pengajuan</p>
-                                        <p><?= $detail->s_pengajuan_pm; ?></p>
+                                        <p>
+                                            <a class="btn btn-outline-info btn-sm btn-icon-text" href="<?= base_url() ?>assets/dokumen/surat/<?= $detail->s_pengajuan_pm; ?>" target="_blank">
+                                                <i class="ti ti-file"></i> <?= $detail->s_pengajuan_pm; ?>
+                                            </a>
+                                        </p>
                                     </address>
                                 </div>
                                 <div class="col-md-6">
                                     <address>
                                         <p class="font-weight-bold">Surat Penerimaan</p>
-                                        <p><?= $detail->s_penerimaan_pm; ?></p>
+                                        <p>
+                                            <a class="btn btn-outline-info btn-sm btn-icon-text" href="<?= base_url() ?>assets/dokumen/surat/<?= $detail->s_penerimaan_pm; ?>" target="_blank">
+                                                <i class="ti ti-file"></i> <?= $detail->s_penerimaan_pm; ?>
+                                            </a>
+                                        </p>
                                     </address>
                                 </div>
                             </div>

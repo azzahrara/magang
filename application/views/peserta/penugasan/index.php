@@ -11,17 +11,17 @@
                             <?= $this->session->flashdata('message'); ?>
                             <div class="mt-3">
                                 <div class="table-responsive">
-                                    <table class="table table-hover">
+                                    <table class="table table-hover" id="pes_penugasan">
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>ID Penugasan</th>
+                                                <!-- <th>ID Penugasan</th> -->
                                                 <th>Tanggal Pengumpulan</th>
-                                                <!-- <th>Isi Tugas</th> -->
-                                                <th>Dokumen</th>
+                                                <th>Isi Tugas</th>
+                                                <th class="no-sort">Dokumen</th>
                                                 <th>Status</th>
                                                 <th>Pengerjaan</th>
-                                                <th>Aksi</th>
+                                                <th class="no-sort">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -31,10 +31,16 @@
                                             ?>
                                                 <tr>
                                                     <td><?= $no++ ?></td>
-                                                    <td><?= $dt->id_tugas ?></td>
+                                                    <!--<td><?= $dt->id_tugas ?></td>-->
                                                     <td><?= $dt->tgl_pengumpulan ?></td>
-                                                    <!-- <td><?= $dt->isi_tugas; ?></td> -->
-                                                    <td><?= $dt->dok_tugas; ?></td>
+                                                    <td><?= word_limiter($dt->isi_tugas, 6); ?></td>
+                                                    <td style="text-align: center;"><?php
+                                                                                    if ($dt->dok_tugas) { ?>
+                                                            <a class="" href="<?= base_url() ?>assets/dokumen/tugas/<?= $dt->dok_tugas ?>" target="_blank">
+                                                                <i class="icon-file"></i>
+                                                            </a>
+                                                        <?php } ?>
+                                                    </td>
                                                     <td> <?php
                                                             if ($dt->tgl_pengumpulan < date('Y-m-d')) { ?>
                                                             <a class="badge badge-danger">Selesai</a>
@@ -46,7 +52,7 @@
                                                             if ($dt->status == 'Berlangsung') { ?>
                                                             <a class="badge badge-warning">Berjalan</a>
                                                         <?php } else { ?>
-                                                            <a class="badge badge-success">Dikumpul</a>
+                                                            <a class="badge badge-success">Dikirim</a>
                                                         <?php } ?>
                                                     </td>
                                                     <td>

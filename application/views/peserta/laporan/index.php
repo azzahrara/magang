@@ -15,14 +15,14 @@
                             <?= $this->session->flashdata('message'); ?>
                             <div class="mt-3">
                                 <div class="table-responsive">
-                                    <table class="table table-hover">
+                                    <table class="table table-hover" id="pes_lap">
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
                                                 <th>Tanggal</th>
-                                                <!-- <th>Isi</th> -->
-                                                <th>Dokumen</th>
-                                                <th>Aksi</th>
+                                                <th class="no-sort">Isi Lap</th>
+                                                <th class="no-sort">Dokumen</th>
+                                                <th class="no-sort">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -33,8 +33,14 @@
                                                 <tr>
                                                     <td><?= $no++ ?></td>
                                                     <td><?= $lm->tgl_lap_ming ?></td>
-                                                    <!-- <td><?= $lm->isi_lap_ming ?></td> -->
-                                                    <td><?= $lm->dok_lap_ming; ?></td>
+                                                    <td><?= character_limiter($lm->isi_lap_ming, 50) ?></td>
+                                                    <td style="text-align: center;"><?php
+                                                                                    if ($lm->dok_lap_ming) { ?>
+                                                            <a class="" href="<?= base_url() ?>assets/dokumen/lap_ming/<?= $lm->dok_lap_ming ?>" target="_blank">
+                                                                <i class="icon-file"></i>
+                                                            </a>
+                                                        <?php } ?>
+                                                    </td>
                                                     <td>
                                                         <a class="btn btn-sm btn-info" href="<?= base_url('peserta/laporan/detail/' . $lm->id_lap_ming) ?>"><i class="ti ti-eye"></i></a>
                                                         <!-- <a class="btn btn-sm btn-success"><i class="ti ti-pencil"></i></a> -->

@@ -13,6 +13,7 @@ class Laporan extends CI_Controller
     {
         //echo 'selamat datang ' . $data['user2']['nama_pm'];
         $data['title'] = 'Pegawai | Laporan';
+        $data['sub'] = 'Laporan Mingguan Peserta Bimbingan';
         $data['user'] = $this->Model_pegawai->getuser();
         $nip = $data['user']['nip'];
         $ket1 = 'laporan_mingguan.id_pm = peserta_magang.id_pm';
@@ -31,6 +32,7 @@ class Laporan extends CI_Controller
     {
         //echo 'selamat datang ' . $data['user2']['nama_pm'];
         $data['title'] = 'Pegawai | Detail Laporan';
+        $data['jns'] = '1';
         $data['user'] = $this->Model_pegawai->getuser();
         $nip = $data['user']['nip'];
         $ket1 = 'laporan_mingguan.id_pm = peserta_magang.id_pm';
@@ -96,5 +98,43 @@ class Laporan extends CI_Controller
         $this->Model_peserta->updata('laporan_mingguan', $datarev, $ket);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Review Dihapus</div>');
         redirect('pegawai/laporan/detail/' . $id_lap_ming);
+    }
+
+    public function laporan_seluruh_peserta()
+    {
+        //echo 'selamat datang ' . $data['user2']['nama_pm'];
+        //echo 'selamat datang ' . $data['user2']['nama_pm'];
+        $data['title'] = 'Pegawai | Laporan';
+        $data['sub'] = 'Laporan Mingguan Seluruh Peserta';
+        $data['user'] = $this->Model_pegawai->getuser();
+        $data['nip'] = $data['user']['nip'];
+        $ket1 = 'peserta_magang.id_pm = laporan_mingguan.id_pm';
+        $getdetail = $this->Model_pegawai->alljoin2arrinner('laporan_mingguan', 'peserta_magang', $ket1);
+        $data['details'] = $getdetail;
+        // var_dump($data['detail']);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('pegawai/laporan/index', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function det_lap($id_lap_ming)
+    {
+        //echo 'selamat datang ' . $data['user2']['nama_pm'];
+        $data['title'] = 'Pegawai | Detail Laporan';
+        $data['user'] = $this->Model_pegawai->getuser();
+        $data['jns'] = '0';
+        // $nip = $data['user']['nip'];
+        $ket1 = 'laporan_mingguan.id_pm = peserta_magang.id_pm';
+        $ketw = 'laporan_mingguan.id_lap_ming';
+        $getdetail = $this->Model_pegawai->join2inner('peserta_magang', 'laporan_mingguan', $ket1, $ketw, $id_lap_ming);
+        $data['detail'] = $getdetail;
+        // var_dump($getdetail);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('pegawai/laporan/v_detail', $data);
+        $this->load->view('templates/footer');
     }
 }

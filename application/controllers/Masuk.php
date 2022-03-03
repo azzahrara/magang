@@ -73,18 +73,18 @@ class Masuk extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Masa Magang telah selesai  </div>');
                 redirect('masuk');
             }
-        } elseif ($email == 'admin@gmail.com') {
-            if ($ks == 'admin1234') {
-                $data = [
-                    'email' => 'admin@gmail.com',
-                    'jenis' => 'admin'
-                ];
-                $this->session->set_userdata($data);
-                redirect('admin/dashboard');
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Kata Sandi Admin Salah!  </div>');
-                redirect('masuk');
-            }
+            // } elseif ($email == 'admin@gmail.com') {
+            //     if ($ks == 'admin1234') {
+            //         $data = [
+            //             'email' => 'admin@gmail.com',
+            //             'jenis' => 'admin'
+            //         ];
+            //         $this->session->set_userdata($data);
+            //         redirect('admin/dashboard');
+            //     } else {
+            //         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Kata Sandi Admin Salah!  </div>');
+            //         redirect('masuk');
+            //     }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Akun tidak terdaftar!  </div>');
             redirect('masuk');

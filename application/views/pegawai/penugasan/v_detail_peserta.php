@@ -30,10 +30,10 @@
                                             <th>Nama Peserta</th>
                                             <td><?= $detail->nama_pm ?> </td>
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <th>Hasil Tugas</th>
                                             <td><?= $detail->hasil_tugas ?></td>
-                                        </tr>
+                                        </tr> -->
                                         <tr>
                                             <th>Dokumen</th>
                                             <td><?php
@@ -47,6 +47,8 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <h4 class="font-weight-bold mt-3">Hasil Tugas</h4>
+                            <p><?= $detail->hasil_tugas ?></p>
                         </div>
                         <a href="<?= base_url('pegawai/penugasan/detail/' . $detail->id_tugas) ?>" class="btn btn-light float-right">Kembali</a>
                     </div>
